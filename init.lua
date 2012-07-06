@@ -36,6 +36,21 @@ function draw.point(im, x, y, radius, r, g, b)
    end
 end
 
+function draw.circle(im, x, y, radius, r, g, b, thickness)
+   thickness = thickness or 1
+   local n = 20
+   local delta = 2*math.pi/n
+   local alpha = 0
+   for i = 1,n do
+      draw.line(im, x+radius*math.cos(alpha),
+		y+radius*math.sin(alpha),
+		x+radius*math.cos(alpha+delta),
+		y+radius*math.sin(alpha+delta),
+		r, g, b)
+      alpha = alpha + delta
+   end
+end
+
 function draw.testme()
    require 'image'
    local lena = image.lena()
